@@ -18,4 +18,15 @@ describe("EstadoFinanciero", () => {
     estadoFinanciero.gastos.push(gasto);
     expect(estadoFinanciero.verGastos()).toEqual([gasto]);
   });
+
+  it("debería calcular el porcentaje de ingresos gastados", () => {
+    estadoFinanciero.ingresos.push({ fecha: "2024-10-15", monto: 1000 });
+    estadoFinanciero.gastos.push({ fecha: "2024-10-12", monto: 300 });
+    expect(estadoFinanciero.porcentajeIngresosGastados()).toBe(30);
+  });
+
+  it("debería descontar del presupuesto correctamente", () => {
+    estadoFinanciero.descontarDelPresupuesto({ monto: 200 });
+    expect(estadoFinanciero.verPresupuesto()).toBe(800); 
+  });
 });
