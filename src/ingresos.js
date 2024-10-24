@@ -32,3 +32,5 @@ class Ingresos {
         return this.ingresos;
     }
 }
+
+export default Ingresos;
