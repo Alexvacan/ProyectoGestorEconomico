@@ -1,18 +1,42 @@
-class Gastos {
-  constructor() {
-    this.gastos = [];
-  }
+import Gastos from "./gastos";
 
-  registrarGasto(gasto) {
-    if (!gasto.fecha || !gasto.monto || !gasto.descripcion) {
-      throw new Error("Porfavor llene todos los campos");
-    }
-    this.gastos.push(gasto);
-  }
+describe("Gastos", () => {
+  it("debería lanzar un error si falta un campo", () => {
+    const gastos = new Gastos();
+    const gastoInvalido = { fecha: "2024-10-12", descripcion: "gastos varios" };
 
-  obtenerGastos() {
-    return this.gastos;
-  }
-}
+    expect(() => gastos.registrarGasto(gastoInvalido)).toThrow("Porfavor llene todos los campos");
+  });
 
-export default Gastos;
+  it("debería registrar un gasto correctamente", () => {
+    const gastos = new Gastos();
+    const gastoValido = {
+      fecha: "2024-10-12",
+      monto: 45,
+      descripcion: "compra de libros",
+    };
+
+    gastos.registrarGasto(gastoValido);
+    expect(gastos.obtenerGastos()).toEqual([gastoValido]);
+  });
+
+  it("debería registrar varios gastos correctamente", () => {
+    const gastos = new Gastos();
+    const gastoPasajes = {
+      fecha: "2024-08-12",
+      monto: 20,
+      descripcion: "pasajes",
+    };
+    gastos.registrarGasto(gastoPasajes);
+
+    const gastoCine = {
+      fecha: "2024-05-06",
+      monto: 23,
+      descripcion: "cine",
+    };
+    gastos.registrarGasto(gastoCine);
+
+    const gastosRegistrados = gastos.obtenerGastos();
+    expect(gastosRegistrados).toEqual([gastoPasajes, gastoCine]);
+  });
+});
