@@ -1,15 +1,17 @@
 class EstadoFinanciero {
     constructor() {
       this.ingresos = [];
+      this.gastos = [];
+      this.presupuesto = 1000; 
     }
   
     verIngresos() {
-      if (this.ingresos.length === 0) {
-        return "No hay ingresos registrados";
-      }
       return this.ingresos;
     }
-  }
   
+    verGastos() {
+      return this.gastos;
+    }
+}
   export default EstadoFinanciero;
   
