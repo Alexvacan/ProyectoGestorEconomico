@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ingresos y Gastos</title>
+    <title>Registrar Ingresos y Gastos</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
     
     <form id="formulario">
         <label for="tipo">Tipo:</label>
-        <select id="tipo">
+        <select id="tipo" required>
             <option value="ingreso">Ingreso</option>
             <option value="gasto">Gasto</option>
         </select>
@@ -28,7 +28,37 @@
         <button type="submit">Agregar</button>
     </form>
 
-    <button onclick="irAEstadoFinanciero()">Ver Estado Financiero</button>
+    <h2>Estado Financiero</h2>
+    <h3>Ingresos</h3>
+    <table id="tabla-ingresos">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Monto</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Los ingresos se añadirán aquí dinámicamente -->
+        </tbody>
+    </table>
+
+    <h3>Gastos</h3>
+    <table id="tabla-gastos">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Monto</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Los gastos se añadirán aquí dinámicamente -->
+        </tbody>
+    </table>
+
+    <h3 class="totales">Presupuesto Total: <span id="presupuesto"></span></h3>
+    <h3 class="totales">Porcentaje Gastado: <span id="porcentaje-gastado"></span>%</h3>
 
     <script src="script.js"></script>
 </body>

@@ -1,70 +1,77 @@
-const estadoFinanciero = {
-    ingresos: JSON.parse(localStorage.getItem('ingresos')) || [],
-    gastos: JSON.parse(localStorage.getItem('gastos')) || [],
-    presupuesto: 0 
-};
+import Ingresos from "./ingresos.js";
+import Gastos from "./gastos.js";
+import EstadoFinanciero from "./EstadoFinanciero.js";
 
-function calcularPorcentajeGastado() {
-    const totalIngresos = estadoFinanciero.ingresos.reduce((total, ingreso) => total + ingreso.monto, 0);
-    const totalGastos = estadoFinanciero.gastos.reduce((total, gasto) => total + gasto.monto, 0);
-    return totalIngresos > 0 ? (totalGastos / totalIngresos) * 100 : 0;
-}
+const ingresos = new Ingresos();
+const gastos = new Gastos();
+const estadoFinanciero = new EstadoFinanciero();
 
-function mostrarDatos() {
-    const ingresosTableBody = document.getElementById('tabla-ingresos')?.querySelector('tbody');
-    const gastosTableBody = document.getElementById('tabla-gastos')?.querySelector('tbody');
-    const presupuestoSpan = document.getElementById('presupuesto');
-    const porcentajeGastadoSpan = document.getElementById('porcentaje-gastado');
+const formulario = document.querySelector("#formulario");
+const tablaIngresos = document.querySelector("#tabla-ingresos tbody");
+const tablaGastos = document.querySelector("#tabla-gastos tbody");
+const presupuestoSpan = document.querySelector("#presupuesto");
+const porcentajeGastadoSpan = document.querySelector("#porcentaje-gastado");
 
-    estadoFinanciero.ingresos.forEach(ingreso => {
-        const row = document.createElement('tr');
-        row.innerHTML = `<td>${ingreso.fecha}</td><td>${ingreso.monto}</td><td>${ingreso.descripcion}</td>`;
-        ingresosTableBody.appendChild(row);
-    });
-
-    estadoFinanciero.gastos.forEach(gasto => {
-        const row = document.createElement('tr');
-        row.innerHTML = `<td>${gasto.fecha}</td><td>${gasto.monto}</td><td>${gasto.descripcion}</td>`;
-        gastosTableBody.appendChild(row);
-    });
-
-    presupuestoSpan.textContent = `$${estadoFinanciero.presupuesto}`;
-    porcentajeGastadoSpan.textContent = calcularPorcentajeGastado().toFixed(2);
-}
-
-function agregarIngresoGasto(event) {
+formulario.addEventListener("submit", (event) => {
     event.preventDefault();
-    const tipo = document.getElementById('tipo').value;
-    const fecha = document.getElementById('fecha').value;
-    const monto = parseFloat(document.getElementById('monto').value);
-    const descripcion = document.getElementById('descripcion').value;
 
-    if (tipo === 'ingreso') {
-        estadoFinanciero.ingresos.push({ fecha, monto, descripcion });
+    const tipo = document.querySelector("#tipo").value;
+    const fecha = document.querySelector("#fecha").value;
+    const monto = Number.parseInt(document.querySelector("#monto").value);
+    const descripcion = document.querySelector("#descripcion").value;
+
+    const registro = {
+        fecha,
+        monto,
+        descripcion,
+    };
+
+    if (tipo === "ingreso") {
+        ingresos.registrarIngreso(registro);
+        estadoFinanciero.registrarIngreso(registro);
     } else {
-        estadoFinanciero.gastos.push({ fecha, monto, descripcion });
+        gastos.registrarGasto(registro);
+        estadoFinanciero.registrarGasto(registro);
     }
 
-    localStorage.setItem('ingresos', JSON.stringify(estadoFinanciero.ingresos));
-    localStorage.setItem('gastos', JSON.stringify(estadoFinanciero.gastos));
+    actualizarTablas();
+    actualizarEstadoFinanciero();
+    formulario.reset();
+});
 
-    document.getElementById('formulario').reset();
+function actualizarTablas() {
+    // Limpiar las tablas
+    tablaIngresos.innerHTML = "";
+    tablaGastos.innerHTML = "";
 
-    window.location.href = 'estado_financiero.html';
+    // Actualizar ingresos
+    ingresos.obtenerIngresos().forEach((ingreso) => {
+        const fila = `<tr>
+            <td>${ingreso.fecha}</td>
+            <td>${ingreso.monto}</td>
+            <td>${ingreso.descripcion}</td>
+        </tr>`;
+        tablaIngresos.innerHTML += fila;
+    });
+
+    // Actualizar gastos
+    gastos.obtenerGastos().forEach((gasto) => {
+        const fila = `<tr>
+            <td>${gasto.fecha}</td>
+            <td>${gasto.monto}</td>
+            <td>${gasto.descripcion}</td>
+        </tr>`;
+        tablaGastos.innerHTML += fila;
+    });
 }
 
-function irAEstadoFinanciero() {
-    window.location.href = 'estado_financiero.html';
-}
-
-function irAIngresos() {
-    window.location.href = 'index.html';
-}
-
-if (document.getElementById('tabla-ingresos')) {
-    mostrarDatos();
-}
-
-if (document.getElementById('formulario')) {
-    document.getElementById('formulario').addEventListener('submit', agregarIngresoGasto);
+function actualizarEstadoFinanciero() {
+    const totalIngresos = ingresos.obtenerIngresos().reduce((total, ingreso) => total + ingreso.monto, 0);
+    const totalGastos = gastos.obtenerGastos().reduce((total, gasto) => total + gasto.monto, 0);
+    
+    estadoFinanciero.presupuesto = totalIngresos; // Considerar total ingresos como presupuesto total
+    presupuestoSpan.innerText = estadoFinanciero.presupuesto;
+    
+    const porcentajeGastado = estadoFinanciero.calcularPorcentajeGastado();
+    porcentajeGastadoSpan.innerText = porcentajeGastado.toFixed(2); // Mostrar 2 decimales
 }

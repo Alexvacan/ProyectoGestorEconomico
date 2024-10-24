@@ -1,61 +1,62 @@
-import Gastos from "./gastos.js";
-import Ingresos from "./ingresos.js";
-import EstadoFinanciero from "./EstadoFinanciero.js";
+import EstadoFinanciero from './EstadoFinanciero.js';
 
-const fecha = document.querySelector("#fecha");
-const monto = document.querySelector("#monto");
-const descripcion = document.querySelector("#descripcion");
-
-const formGastos = document.querySelector("#gastos-form");
-const formIngresos = document.querySelector("#ingresos-form");
+const ingresosForm = document.querySelector("#ingresos-form");
+const gastosForm = document.querySelector("#gastos-form");
 const gastosDiv = document.querySelector("#gastos-div");
 const ingresosDiv = document.querySelector("#ingresos-div");
+const resultadoFinanciero = document.querySelector("#resultado-financiero");
+
 const estadoFinanciero = new EstadoFinanciero();
 
-formGastos.addEventListener("submit", (event) => {
+ingresosForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    const gasto = {
-        fecha: fecha.value,
-        monto: Number.parseInt(monto.value),
-        descripcion: descripcion.value,
-    };
-    try {
-        estadoFinanciero.registrarGasto(gasto);
-        actualizarGastos();
-    } catch (error) {
-        console.error(error.message);
-    }
+    const fecha = document.querySelector("#fecha-ingreso").value;
+    const monto = Number.parseInt(document.querySelector("#monto-ingreso").value);
+    const descripcion = document.querySelector("#descripcion-ingreso").value;
+
+    const ingreso = { fecha, monto, descripcion };
+    estadoFinanciero.registrarIngreso(ingreso);
+    mostrarIngresos();
+    mostrarEstadoFinanciero();
 });
 
-formIngresos.addEventListener("submit", (event) => {
+gastosForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    const ingreso = {
-        fecha: fecha.value,
-        monto: Number.parseInt(monto.value),
-        descripcion: descripcion.value,
-    };
-    try {
-        estadoFinanciero.registrarIngreso(ingreso);
-        actualizarIngresos();
-    } catch (error) {
-        console.error(error.message);
-    }
+    const fecha = document.querySelector("#fecha-gasto").value;
+    const monto = Number.parseInt(document.querySelector("#monto-gasto").value);
+    const descripcion = document.querySelector("#descripcion-gasto").value;
+
+    const gasto = { fecha, monto, descripcion };
+    estadoFinanciero.registrarGasto(gasto);
+    mostrarGastos();
+    mostrarEstadoFinanciero();
 });
 
-function actualizarGastos() {
+function mostrarGastos() {
     const gastosRegistrados = estadoFinanciero.gastos;
-    gastosDiv.innerHTML = "<ul>";  
-    gastosRegistrados.forEach((gastoRegistrado) => {
-        gastosDiv.innerHTML += `<li>${gastoRegistrado.fecha}  ${gastoRegistrado.monto}  ${gastoRegistrado.descripcion}</li>`;
+    gastosDiv.innerHTML = "<h3>Gastos Registrados:</h3><ul>";
+    gastosRegistrados.forEach((gasto) => {
+        gastosDiv.innerHTML += `<li>${gasto.fecha} - ${gasto.monto} - ${gasto.descripcion}</li>`;
     });
     gastosDiv.innerHTML += "</ul>";
 }
 
-function actualizarIngresos() {
+function mostrarIngresos() {
     const ingresosRegistrados = estadoFinanciero.ingresos;
-    ingresosDiv.innerHTML = "<ul>";  
-    ingresosRegistrados.forEach((ingresoRegistrado) => {
-        ingresosDiv.innerHTML += `<li>${ingresoRegistrado.fecha}  ${ingresoRegistrado.monto}  ${ingresoRegistrado.descripcion}</li>`;
+    ingresosDiv.innerHTML = "<h3>Ingresos Registrados:</h3><ul>";
+    ingresosRegistrados.forEach((ingreso) => {
+        ingresosDiv.innerHTML += `<li>${ingreso.fecha} - ${ingreso.monto} - ${ingreso.descripcion}</li>`;
     });
     ingresosDiv.innerHTML += "</ul>";
+}
+
+function mostrarEstadoFinanciero() {
+    const estado = estadoFinanciero.obtenerEstadoFinanciero();
+    resultadoFinanciero.innerHTML = `
+        <h3>Estado Financiero</h3>
+        <p>Total Ingresos: ${estado.totalIngresos}</p>
+        <p>Total Gastos: ${estado.totalGastos}</p>
+        <p>Porcentaje Gastado: ${estado.porcentajeGastado.toFixed(2)}%</p>
+        <p>Presupuesto Restante: ${estado.presupuestoRestante}</p>
+    `;
 }
