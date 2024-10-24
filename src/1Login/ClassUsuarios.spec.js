@@ -11,4 +11,15 @@ describe("Datos", () => {
     let contraseniaRegistrado = usuario.obtenerContrasenia();
     expect(contraseniaRegistrado).toEqual("123Jhessa");
   });
+  it("Segunda prueba para los datos de usuario", () => {
+    const usuario = new Ususarios();
+
+    usuario.registrarNombre("Alex");
+    usuario.registrarContrasenia("1234512");
+
+    let nombreRegistrado = usuario.obtenerNombre();
+    expect(nombreRegistrado).toEqual("Alex");
+    let contraseniaRegistrado = usuario.obtenerContrasenia();
+    expect(contraseniaRegistrado).toEqual("1234512");
+  });
 });
