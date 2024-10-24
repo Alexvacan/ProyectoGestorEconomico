@@ -1,51 +1,34 @@
-import Gastos from "./gastos.js";
+import Gastos from "./gastos";
 
 describe("Gastos", () => {
-  it("registrar un gasto", () => {
-    //Given -- arrange
+  it("Error!!! Falta algun campo por rellenar", () => {
     const gastos = new Gastos();
-    const registroGasto = {
+    const gastoInvalido = { fecha: "2024-10-12", descripcion: "gastos varios" };
+
+    expect(() => gastos.registrarGasto(gastoInvalido)).toThrow("Porfavor llene todos los campos");
+  });
+
+  it("Se deberia registrar un gasto correctamente", () => {
+    const gastos = new Gastos();
+    const gastoValido = {
       fecha: "2024-10-12",
       monto: 45,
       descripcion: "compra de libros",
     };
 
-    //When -act
-    gastos.registrarGasto(registroGasto);
-
-    //Then --assert
-    let gastoRegistrado = gastos.obtenerGastos();
-    expect(gastoRegistrado).toEqual([registroGasto]);
+    gastos.registrarGasto(gastoValido);
+    expect(gastos.obtenerGastos()).toEqual([gastoValido]);
   });
 
-  it("registrar un gasto en pasajes", () => {
-    //Given -- arrange
+  it("debería registrar varios gastos correctamente", () => {
     const gastos = new Gastos();
-    const registroGasto = {
-      fecha: "2024-08-12",
-      monto: 20,
-      descripcion: "pasajes",
-    };
-
-    //When -act
-    gastos.registrarGasto(registroGasto);
-
-    //Then --assert
-    let gastoRegistrado = gastos.obtenerGastos();
-    expect(gastoRegistrado).toEqual([registroGasto]);
-  });
-
-  it("registrar varios gastos", () => {
-    //Given -- arrange
-    const gastos = new Gastos();
-    const  gastoPasajes = {
+    const gastoPasajes = {
       fecha: "2024-08-12",
       monto: 20,
       descripcion: "pasajes",
     };
     gastos.registrarGasto(gastoPasajes);
 
-    //When -act
     const gastoCine = {
       fecha: "2024-05-06",
       monto: 23,
@@ -53,8 +36,7 @@ describe("Gastos", () => {
     };
     gastos.registrarGasto(gastoCine);
 
-    //Then --assert
-    let gastosRegistrados = gastos.obtenerGastos();
+    const gastosRegistrados = gastos.obtenerGastos();
     expect(gastosRegistrados).toEqual([gastoPasajes, gastoCine]);
   });
 });
