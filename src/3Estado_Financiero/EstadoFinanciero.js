@@ -2,31 +2,34 @@ class EstadoFinanciero {
     constructor() {
       this.ingresos = [];
       this.gastos = [];
-      this.presupuesto = 1000; 
+      this.presupuesto = 0; 
     }
   
-    verIngresos() {
-      return this.ingresos;
+    registrarIngreso(ingreso) {
+      if (!ingreso.fecha || !ingreso.monto || !ingreso.descripcion) {
+        throw new Error("Por favor llene todos los campos");
+      }
+      this.ingresos.push(ingreso);
     }
   
-    verGastos() {
-      return this.gastos;
+    registrarGasto(gasto) {
+      if (!gasto.fecha || !gasto.monto || !gasto.descripcion) {
+        throw new Error("Por favor llene todos los campos");
+      }
+      this.gastos.push(gasto);
     }
   
-    verPresupuesto() {
-      return this.presupuesto;
+    calcularPorcentajeGastado() {
+      const totalIngresos = this.ingresos.reduce((total, ingreso) => total + ingreso.monto, 0);
+      const totalGastos = this.gastos.reduce((total, gasto) => total + gasto.monto, 0);
+      return totalIngresos > 0 ? (totalGastos / totalIngresos) * 100 : 0; 
     }
   
-    porcentajeIngresosGastados() {
-      const totalGastos = this.gastos.reduce((acc, gasto) => acc + gasto.monto, 0);
-      const totalIngresos = this.ingresos.reduce((acc, ingreso) => acc + ingreso.monto, 0);
-      return totalIngresos ? (totalGastos / totalIngresos) * 100 : 0;
-    }
-  
-    descontarDelPresupuesto(ingreso) {
-      this.presupuesto -= ingreso.monto; 
+    descontarDelPresupuesto(monto) {
+      if (monto > this.presupuesto) {
+        throw new Error("No se puede descontar más del presupuesto disponible");
+      }
+      this.presupuesto -= monto; 
     }
   }
-  
-  export default EstadoFinanciero;
-  
+  module.exports = EstadoFinanciero;
