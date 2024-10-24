@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingresos y Gastos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Registrar Ingresos y Gastos</h1>
+    
+    <form id="formulario">
+        <label for="tipo">Tipo:</label>
+        <select id="tipo">
+            <option value="ingreso">Ingreso</option>
+            <option value="gasto">Gasto</option>
+        </select>
+        
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" required>
+        
+        <label for="monto">Monto:</label>
+        <input type="number" id="monto" required>
+        
+        <label for="descripcion">Descripción:</label>
+        <input type="text" id="descripcion" required>
+        
+        <button type="submit">Agregar</button>
+    </form>
+
+    <button onclick="irAEstadoFinanciero()">Ver Estado Financiero</button>
+
+    <script src="script.js"></script>
+</body>
+</html>

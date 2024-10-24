@@ -30,3 +30,12 @@ th {
 .totales {
     font-weight: bold;
 }
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
