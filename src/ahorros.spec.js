@@ -34,5 +34,23 @@ describe("Ahorros", () => {
     expect(ahorroNeto).toEqual(1500);
   });
 
-  
+  it("debería calcular correctamente el ahorro neto con varios ingresos y gastos", () => {
+    const ahorros = new Ahorros();
+
+    const ingreso1 = { fecha: "2024-10-15", monto: 1000, descripcion: "salario" };
+    const ingreso2 = { fecha: "2024-10-20", monto: 500, descripcion: "freelance" };
+
+    const gasto1 = { fecha: "2024-10-16", monto: 200, descripcion: "comida" };
+    const gasto2 = { fecha: "2024-10-17", monto: 150, descripcion: "transporte" };
+
+    ahorros.registrarIngreso(ingreso1);
+    ahorros.registrarIngreso(ingreso2);
+    ahorros.registrarGasto(gasto1);
+    ahorros.registrarGasto(gasto2);
+
+    // Ahorro neto = (1000 + 500) - (200 + 150) = 1150
+    const ahorroNeto = ahorros.calcularAhorroNeto();
+
+    expect(ahorroNeto).toEqual(1150);
+  });
 });
