@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
+<head>
     <title>Login</title>
     <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
+</head>
+<body>
     
-    <form id="login-form" action="./paginas/EstadoFinanciero.html" method="post">
+    <form id="login-form" action="./paginas/EstadoFinanciero.html" method="get">
       <h2>Iniciar Sesión</h2>
       <label for="nombre-usuario">Nombre de usuario:</label>
       <input type="text" id="nombre-usuario" name="nombre-usuario" required /><br /><br />
@@ -18,9 +18,10 @@
     </form>
 
     <form id="login-sin-cuenta-form">
-      <button id="login-sin-cuenta-button" type="button" value="Ingresar Sin Cuenta" onclick="location.href='./paginas/paginaPrincipal.html'">Ingresar Sin Cuenta</button>
+      <button id="login-sin-cuenta-button" type="button" onclick="location.href='./paginas/EstadoFinanciero.html'">Ingresar Sin Cuenta</button>
     </form>
+
     <script type="module" src="./src/presenter.js"></script>
 
-  </body>
+</body>
 </html>
