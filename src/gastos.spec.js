@@ -1,14 +1,14 @@
 import Gastos from "./gastos";
 
 describe("Gastos", () => {
-  it("debería lanzar un error si falta un campo", () => {
+  it("Error!!! Falta algun campo por rellenar", () => {
     const gastos = new Gastos();
     const gastoInvalido = { fecha: "2024-10-12", descripcion: "gastos varios" };
 
     expect(() => gastos.registrarGasto(gastoInvalido)).toThrow("Porfavor llene todos los campos");
   });
 
-  it("debería registrar un gasto correctamente", () => {
+  it("Se deberia registrar un gasto correctamente", () => {
     const gastos = new Gastos();
     const gastoValido = {
       fecha: "2024-10-12",
