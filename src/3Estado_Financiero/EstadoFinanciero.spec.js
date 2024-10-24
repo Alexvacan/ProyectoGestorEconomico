@@ -1,4 +1,4 @@
-const EstadoFinanciero = require('./EstadoFinanciero'); // Asegúrate de importar correctamente
+const EstadoFinanciero = require('./EstadoFinanciero'); 
 
 describe('EstadoFinanciero', () => {
   let estadoFinanciero;
@@ -24,17 +24,17 @@ describe('EstadoFinanciero', () => {
     estadoFinanciero.registrarGasto({ fecha: "2024-01-02", monto: 500, descripcion: "Gasto 1" });
 
     const porcentajeGastado = estadoFinanciero.calcularPorcentajeGastado();
-    expect(porcentajeGastado).toBe(50); // Ajusta el valor esperado según tu implementación
+    expect(porcentajeGastado).toBe(50); 
   });
 
   it("debería descontar del presupuesto correctamente", () => {
-    estadoFinanciero.presupuesto = 1000; // Establece un presupuesto inicial
+    estadoFinanciero.presupuesto = 1000; 
     estadoFinanciero.descontarDelPresupuesto(300);
     expect(estadoFinanciero.presupuesto).toBe(700);
   });
 
   it("debería lanzar un error si se intenta descontar más del presupuesto", () => {
-    estadoFinanciero.presupuesto = 500; // Establece un presupuesto inicial
+    estadoFinanciero.presupuesto = 500; 
     expect(() => estadoFinanciero.descontarDelPresupuesto(600)).toThrow("No se puede descontar más del presupuesto disponible");
   });
 });

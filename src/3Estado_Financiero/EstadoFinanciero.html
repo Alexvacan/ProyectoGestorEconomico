@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estado Financiero</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            max-width: 600px;
+        }
+        h1 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .totales {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Estado Financiero</h1>
+
+    <h2>Ingresos</h2>
+    <table id="tabla-ingresos">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Monto</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Los ingresos se añadirán aquí dinámicamente -->
+        </tbody>
+    </table>
+
+    <h2>Gastos</h2>
+    <table id="tabla-gastos">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Monto</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Los gastos se añadirán aquí dinámicamente -->
+        </tbody>
+    </table>
+
+    <h3 class="totales">Presupuesto Total: <span id="presupuesto"></span></h3>
+    <h3 class="totales">Porcentaje Gastado: <span id="porcentaje-gastado"></span>%</h3>
+
+    <script>
+        // Datos de ejemplo
+        const estadoFinanciero = {
+            ingresos: [
+                { fecha: '2024-01-01', monto: 1000, descripcion: 'Ingreso 1' },
+                { fecha: '2024-01-10', monto: 500, descripcion: 'Ingreso 2' }
+            ],
+            gastos: [
+                { fecha: '2024-01-02', monto: 300, descripcion: 'Gasto 1' },
+                { fecha: '2024-01-15', monto: 200, descripcion: 'Gasto 2' }
+            ],
+            presupuesto: 1000
+        };
+
+        // Función para calcular el porcentaje de gastos
+        function calcularPorcentajeGastado() {
+            const totalIngresos = estadoFinanciero.ingresos.reduce((total, ingreso) => total + ingreso.monto, 0);
+            const totalGastos = estadoFinanciero.gastos.reduce((total, gasto) => total + gasto.monto, 0);
+            return totalIngresos > 0 ? (totalGastos / totalIngresos) * 100 : 0;
+        }
+
+        // Función para mostrar los datos en la tabla
+        function mostrarDatos() {
+            const ingresosTableBody = document.getElementById('tabla-ingresos').querySelector('tbody');
+            const gastosTableBody = document.getElementById('tabla-gastos').querySelector('tbody');
+            const presupuestoSpan = document.getElementById('presupuesto');
+            const porcentajeGastadoSpan = document.getElementById('porcentaje-gastado');
+
+            // Mostrar ingresos
+            estadoFinanciero.ingresos.forEach(ingreso => {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${ingreso.fecha}</td><td>${ingreso.monto}</td><td>${ingreso.descripcion}</td>`;
+                ingresosTableBody.appendChild(row);
+            });
+
+            // Mostrar gastos
+            estadoFinanciero.gastos.forEach(gasto => {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${gasto.fecha}</td><td>${gasto.monto}</td><td>${gasto.descripcion}</td>`;
+                gastosTableBody.appendChild(row);
+            });
+
+            // Mostrar presupuesto y porcentaje
+            presupuestoSpan.textContent = `$${estadoFinanciero.presupuesto}`;
+            porcentajeGastadoSpan.textContent = calcularPorcentajeGastado().toFixed(2);
+        }
+
+        // Llamar a la función para mostrar datos al cargar la página
+        mostrarDatos();
+    </script>
+</body>
+</html>
