@@ -1,17 +1,17 @@
 class Ususarios {
   constructor() {
-    this.nombre = [];
-    this.contrasenia = [];
+    this.nombre;
+    this.contrasenia;
   }
   registrarNombre(nombre) {
-    this.nombre.push(nombre);
+    this.nombre = nombre;
   }
   obtenerNombre() {
     return this.nombre;
   }
 
   registrarContrasenia(contrasenia) {
-    this.contrasenia.push(contrasenia);
+    this.contrasenia = contrasenia;
   }
   obtenerContrasenia() {
     return this.contrasenia;
