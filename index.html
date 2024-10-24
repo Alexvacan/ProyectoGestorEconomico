@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<html xml:lang="es">
+<html lang="es">
   <head>
-    <title>Gastos</title>
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Registro de gasto</h1>
-    <form id="gastos-form">
-      <label for="fecha">fecha:</label>
-      <input type="date" id="fecha" />
-      <label for="monto">Monto:</label>
-      <input type="number" id="monto" />
-      <label for="descripcion">Descripcion:</label>
-      <input type="text" id="descripcion" />
-
-      <input
-        type="submit"
-        value="Registrar gasto"
-        id="registrar-gasto-button"
-      />
+    
+    <form id="login-form" action="paginaPrincipal.html" method="post">
+      <h2>Iniciar Sesión</h2>
+      <label for="nombre-usuario">Nombre de usuario:</label>
+      <input type="text" id="nombre-usuario" name="nombre-usuario" required /><br /><br />
+      
+      <label for="contraseña">Contraseña:</label>
+      <input type="contraseña" id="contraseña" name="contraseña" required /><br /><br />
+      
+      <button type="submit" onclick="location.href='./paginas/paginaPrincipal.html'">Iniciar Sesión</button>
     </form>
-    <div id="gastos-div"></div>
 
-    <script type="module" src="./src/presenter.js"></script>
+    <form id="login-sin-cuenta-form">
+      <button id="login-sin-cuenta-button" type="button" value="Ingresar Sin Cuenta" onclick="location.href='./paginas/paginaPrincipal.html'">Ingresar Sin Cuenta</button>
+    </form>
+    
+    <div id="gastos-div"></div>
   </body>
 </html>
