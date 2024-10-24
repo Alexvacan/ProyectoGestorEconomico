@@ -19,7 +19,20 @@ describe("Ahorros", () => {
     expect(ahorros.obtenerGastos()).toEqual([gastoValido]);
   });
 
+  it("debería calcular correctamente el ahorro neto", () => {
+    const ahorros = new Ahorros();
+    
+    const ingreso = { fecha: "2024-10-15", monto: 2000, descripcion: "salario" };
+    const gasto = { fecha: "2024-10-16", monto: 500, descripcion: "compra de libros" };
+    
+    ahorros.registrarIngreso(ingreso);
+    ahorros.registrarGasto(gasto);
 
+    // Ahorro neto = Ingresos - Gastos = 2000 - 500 = 1500
+    const ahorroNeto = ahorros.calcularAhorroNeto();
+
+    expect(ahorroNeto).toEqual(1500);
+  });
 
   
 });
