@@ -13,7 +13,7 @@ const button=document.querySelector("#button-inicio-con-datos").addEventListener
     }
     else
     {
-      window.location.href='./paginas/paginaPrincipal'
+      window.location.href='./paginas/IngresoDatosDiarios/IngresoDeDatos.html'
     }
 })
 const form = document.querySelector("#gastos-form");
