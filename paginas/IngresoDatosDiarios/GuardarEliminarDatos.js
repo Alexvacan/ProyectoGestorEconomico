@@ -1,4 +1,14 @@
 const NombreClave='datoUsuario'
+
+function convertirArrayAEnteros(array)
+{
+    for(let i=0;i<array.length;i++)
+    {
+        array[i]=Number(array[i])
+    }
+    return array;
+}
+
 document.getElementById('form-datos').addEventListener('submit',function(e){
     e.preventDefault();
     if(localStorage.getItem(NombreClave)===null)
@@ -34,7 +44,6 @@ document.getElementById('form-eliminar').addEventListener('submit',function(e){
     let posNumeroAEliminar=dato.indexOf(Numero_a_eliminar.toString());
     posNumeroAEliminar=posNumeroAEliminar/2
     dato=dato.split(',')
-
 /*  console.log("dato a eliminar:",Numero_a_eliminar)
     console.log('Datos: ',dato)
     console.log('tipo:',typeof(dato[0]))
