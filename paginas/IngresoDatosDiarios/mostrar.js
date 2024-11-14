@@ -1,9 +1,19 @@
 const NombreClave='datos-De-Gastos-diarios'
-let datoGuardado=localStorage.getItem(NombreClave)
+let DatosGastos=localStorage.getItem(NombreClave)
 
-if(datoGuardado){
-    document.getElementById('mostrar-dato').textContent='El dato ingresado fue: '+ datoGuardado;
+let mostrarDiv=document.getElementById('mostrar-Gastos')
+DatosGastos=DatosGastos.split(',')
+
+
+if(DatosGastos.length>=0){
+    DatosGastos.forEach(function(Gasto)
+    {
+        let divElemento = document.createElement('div');
+        divElemento.classList.add('Gasto')
+        divElemento.textContent="Gasto: "+Gasto;
+        mostrarDiv.appendChild(divElemento);
+    })
 }
 else{
-    document.getElementById('mostrar-dato').textContent='No hay datos guardados.'
+    mostrarDiv.textContent='No hay datos guardados.'
 }
