@@ -1,4 +1,4 @@
-const NombreClave='datoUsuario'
+const NombreClave='datos-De-Gastos-diarios'
 
 function convertirArrayAEnteros(array)
 {
@@ -16,32 +16,34 @@ document.getElementById('form-datos').addEventListener('submit',function(e){
         localStorage.setItem(NombreClave,['']);
     }
     
-    let dato =localStorage.getItem(NombreClave)
-    dato=dato.split(',')
-    if(dato[0]==='')
+    let DatosGastos =localStorage.getItem(NombreClave)
+    DatosGastos=DatosGastos.split(',')
+    if(DatosGastos[0]==='')
     {
-        dato.shift();
+        DatosGastos.shift();
     }
-    console.log(dato)
-    dato.push(document.getElementById('dato').value);
-    console.log(dato)
-    localStorage.setItem(NombreClave,dato);
+    console.log(DatosGastos)
+    DatosGastos.push(document.getElementById('dato').value);
+    console.log(DatosGastos)
+    localStorage.setItem(NombreClave,DatosGastos);
     
 })
+
+
 document.getElementById('form-eliminar').addEventListener('submit',function(e){
     e.preventDefault();
     let Numero_a_eliminar=Number(document.getElementById('dato-a-eliminar').value)
-    let dato=localStorage.getItem(NombreClave)
-    dato=dato.split(',')
-    dato=convertirArrayAEnteros(dato);
-    let posNumeroAEliminar=dato.indexOf(Numero_a_eliminar);
+    let DatosGastos=localStorage.getItem(NombreClave)
+    DatosGastos=DatosGastos.split(',')
+    DatosGastos=convertirArrayAEnteros(DatosGastos);
+    let posNumeroAEliminar=DatosGastos.indexOf(Numero_a_eliminar);
     if(posNumeroAEliminar>=0)
     {
-        dato.splice(posNumeroAEliminar,1)
+        DatosGastos.splice(posNumeroAEliminar,1)
     }
     else
     {
         alert("No existe el numero que quiere eliminar")
     }
-    localStorage.setItem(NombreClave,dato)
+    localStorage.setItem(NombreClave,DatosGastos)
 })
