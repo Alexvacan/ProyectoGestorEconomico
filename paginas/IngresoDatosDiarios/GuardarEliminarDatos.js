@@ -67,17 +67,25 @@ document.getElementById("form-datos").addEventListener("submit", function (e) {
 
 document.getElementById("form-eliminar").addEventListener("submit", function (e) {
     e.preventDefault();
-    let Numero_a_eliminar = Number(
-      document.getElementById("dato-a-eliminar").value
-    );
-
+    let Numero_a_eliminar = Number(document.getElementById("dato-a-eliminar").value);
+    let fechasGuardadas=OptenerDatosLocalStoreCorrectamente(NombreClaveFechas);
+    let horasGuardadas=OptenerDatosLocalStoreCorrectamente(NombreClaveHoras);
     let DatosGastos = OptenerDatosLocalStoreCorrectamente(NombreClave);
     DatosGastos = convertirArrayAEnteros(DatosGastos);
     let posNumeroAEliminar = DatosGastos.indexOf(Numero_a_eliminar);
+    console.log("Fechas:",fechasGuardadas)
+    console.log("horas:",horasGuardadas)
+
+
+
     if (posNumeroAEliminar >= 0) {
       DatosGastos.splice(posNumeroAEliminar, 1);
+      fechasGuardadas.splice(posNumeroAEliminar,1);
+      horasGuardadas.splice(posNumeroAEliminar,1)
     } else {
       alert("No existe el numero que quiere eliminar");
     }
     localStorage.setItem(NombreClave, DatosGastos);
+    localStorage.setItem(NombreClaveFechas,fechasGuardadas);
+    localStorage.setItem(NombreClaveHoras,horasGuardadas);
   });
