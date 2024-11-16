@@ -54,7 +54,6 @@ document.getElementById("form-datos").addEventListener("submit", function (e) {
 
 
   let DatosGastos = OptenerDatosLocalStoreCorrectamente(NombreClave);
-  console.log(DatosGastos)
   DatosGastos.push(document.getElementById("dato").value);
   fechasGuardadas.push(fechaMesDiaActual)
   horasGuardadas.push(horaActual)
@@ -73,8 +72,7 @@ document.getElementById("form-eliminar").addEventListener("submit", function (e)
     let DatosGastos = OptenerDatosLocalStoreCorrectamente(NombreClave);
     DatosGastos = convertirArrayAEnteros(DatosGastos);
     let posNumeroAEliminar = DatosGastos.indexOf(Numero_a_eliminar);
-    console.log("Fechas:",fechasGuardadas)
-    console.log("horas:",horasGuardadas)
+
 
 
 
