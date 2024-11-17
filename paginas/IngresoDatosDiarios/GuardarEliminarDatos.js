@@ -61,7 +61,7 @@ document.getElementById("form-datos").addEventListener("submit", function (e) {
   localStorage.setItem(NombreClave, DatosGastos);
   localStorage.setItem(NombreClaveFechas,fechasGuardadas);
   localStorage.setItem(NombreClaveHoras, horasGuardadas);
-
+  alert("El Gasto fue guardado correctamente")
 });
 
 document.getElementById("form-eliminar").addEventListener("submit", function (e) {
@@ -80,10 +80,12 @@ document.getElementById("form-eliminar").addEventListener("submit", function (e)
       DatosGastos.splice(posNumeroAEliminar, 1);
       fechasGuardadas.splice(posNumeroAEliminar,1);
       horasGuardadas.splice(posNumeroAEliminar,1)
+      alert("El Gasto fue eliminado correctamente")
     } else {
       alert("No existe el numero que quiere eliminar");
     }
     localStorage.setItem(NombreClave, DatosGastos);
     localStorage.setItem(NombreClaveFechas,fechasGuardadas);
     localStorage.setItem(NombreClaveHoras,horasGuardadas);
+
   });
