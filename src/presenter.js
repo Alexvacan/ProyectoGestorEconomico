@@ -13,7 +13,7 @@ const button=document.querySelector("#button-inicio-con-datos").addEventListener
     }
     else
     {
-      window.location.href='./paginas/paginaPrincipal'
+      window.location.href='./src/Pagina-Gestor.hmtl'
     }
 })
 const form = document.querySelector("#gastos-form");

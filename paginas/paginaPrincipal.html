@@ -1,11 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Mostrar Gestor Económico</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .formulario {
+            margin-bottom: 20px;
+        }
+        input, button {
+            margin: 5px 0;
+        }
+        .resultados {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    hola
+
+    <h1>Gestor Económico</h1>
+
+    <div class="formulario">
+        <h2>Registrar Ingreso</h2>
+        <input type="text" id="ingresoDescripcion" placeholder="Descripción" />
+        <input type="number" id="ingresoMonto" placeholder="Monto" />
+        <input type="date" id="ingresoFecha" />
+        <button id="btnRegistrarIngreso">Agregar Ingreso</button>
+    </div>
+
+    <div class="formulario">
+        <h2>Registrar Gasto</h2>
+        <input type="text" id="gastoDescripcion" placeholder="Descripción" />
+        <input type="number" id="gastoMonto" placeholder="Monto" />
+        <input type="date" id="gastoFecha" />
+        <button id="btnRegistrarGasto">Agregar Gasto</button>
+    </div>
+
+    <div class="resultados">
+        <h2>Totales</h2>
+        <p>Total Ingresos: <span id="totalIngresos">0</span></p>
+        <p>Total Gastos: <span id="totalGastos">0</span></p>
+        <p>Diferencia: <span id="diferencia">0</span></p>
+    </div>
+
+    <script type="module">
+        import Ingresos from '../src/ingresos.js';
+        import Gastos from '../src/gastos.js';
+
+        const ingresos = new Ingresos();
+        const gastos = new Gastos();
+
+        // Función para registrar ingresos
+        function registrarIngreso() {
+            const descripcion = document.getElementById('ingresoDescripcion').value;
+            const monto = parseFloat(document.getElementById('ingresoMonto').value);
+            const fecha = document.getElementById('ingresoFecha').value;
+
+            if (!descripcion || !monto || !fecha) {
+                alert('Por favor complete todos los campos');
+                return;
+            }
+
+            const ingreso = { fecha, monto, descripcion };
+            try {
+                ingresos.registrarIngreso(ingreso);
+                actualizarTotales();
+                limpiarFormulario('ingreso');
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+
+        // Función para registrar gastos
+        function registrarGasto() {
+            const descripcion = document.getElementById('gastoDescripcion').value;
+            const monto = parseFloat(document.getElementById('gastoMonto').value);
+            const fecha = document.getElementById('gastoFecha').value;
+
+            if (!descripcion || !monto || !fecha) {
+                alert('Por favor complete todos los campos');
+                return;
+            }
+
+            const gasto = { fecha, monto, descripcion };
+            try {
+                gastos.registrarGasto(gasto);
+                actualizarTotales();
+                limpiarFormulario('gasto');
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+
+        // Función para actualizar los totales de ingresos, gastos y diferencia
+        function actualizarTotales() {
+            const totalIngresos = ingresos.obtenerIngresos().reduce((total, ingreso) => total + ingreso.monto, 0);
+            const totalGastos = gastos.obtenerGastos().reduce((total, gasto) => total + gasto.monto, 0);
+            const diferencia = totalIngresos - totalGastos;
+
+            document.getElementById('totalIngresos').innerText = totalIngresos;
+            document.getElementById('totalGastos').innerText = totalGastos;
+            document.getElementById('diferencia').innerText = diferencia;
+        }
+
+        // Función para limpiar los formularios
+        function limpiarFormulario(tipo) {
+            if (tipo === 'ingreso') {
+                document.getElementById('ingresoDescripcion').value = '';
+                document.getElementById('ingresoMonto').value = '';
+                document.getElementById('ingresoFecha').value = '';
+            } else {
+                document.getElementById('gastoDescripcion').value = '';
+                document.getElementById('gastoMonto').value = '';
+                document.getElementById('gastoFecha').value = '';
+            }
+        }
+
+        // Asignación de eventos a los botones
+        document.getElementById('btnRegistrarIngreso').addEventListener('click', registrarIngreso);
+        document.getElementById('btnRegistrarGasto').addEventListener('click', registrarGasto);
+    </script>
+
 </body>
 </html>
