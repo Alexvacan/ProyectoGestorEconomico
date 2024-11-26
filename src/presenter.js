@@ -13,11 +13,7 @@ const button=document.querySelector("#button-inicio-con-datos").addEventListener
     }
     else
     {
-<<<<<<< HEAD
-      window.location.href='./src/Pagina-Gestor.hmtl'
-=======
-      window.location.href='./paginas/IngresoDatosDiarios/IngresoDeDatos.html'
->>>>>>> origin/IngresoDeDatosGastosDiarios
+      window.location.href='./paginas/IngresoDatosDiarios/PaginaPrincipal.html'
     }
 })
 const form = document.querySelector("#gastos-form");

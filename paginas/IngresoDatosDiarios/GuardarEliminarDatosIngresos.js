@@ -37,8 +37,8 @@ function convertirArrayAEnteros(array) {
   return array;
 }
 
-document.getElementById("form-datos-Ingresos").addEventListener("submit", function (e) {
-  e.preventDefault();
+document.getElementById("form-datos-Ingresos").addEventListener("submit", function (event) {
+  event.preventDefault();
   const fechaActual = new Date();
   let dia = fechaActual.getDate();
   let mes = fechaActual.getMonth() + 1;
@@ -64,8 +64,8 @@ document.getElementById("form-datos-Ingresos").addEventListener("submit", functi
   alert("El Gasto fue guardado correctamente")
 });
 
-document.getElementById("form-eliminar-Ingresos").addEventListener("submit", function (e) {
-    e.preventDefault();
+document.getElementById("form-eliminar-Ingresos").addEventListener("submit", function (event) {
+  event.preventDefault();
     let Numero_a_eliminar = Number(document.getElementById("dato-a-eliminar-Ingresos").value);
     let fechasGuardadas=OptenerDatosLocalStoreCorrectamente(NombreClaveIngresosFechas);
     let horasGuardadas=OptenerDatosLocalStoreCorrectamente(NombreClaveIngresosHoras);
