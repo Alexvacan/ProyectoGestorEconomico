@@ -48,3 +48,52 @@ if(DatosIngresos.length >= 0) {
 } else {
     mostrarDivIngresos.textContent = 'No hay datos guardados.';
 }
+
+
+
+
+
+function ControlarQueLocaStoreNoEsteVacio(nombreClave)
+{
+  if (localStorage.getItem(nombreClave) === null) {
+    localStorage.setItem(nombreClave, [""]);
+  }
+}
+
+function EliminarDatoInicialSiEstaVacio(array)
+{
+  if (array[0] === "") {
+    array.shift();
+  }
+  return array;
+}
+
+
+function OptenerDatosLocalStoreCorrectamente(nombreClave)
+{
+  ControlarQueLocaStoreNoEsteVacio(nombreClave);
+  let datosOptenidos=localStorage.getItem(nombreClave)
+  datosOptenidos=datosOptenidos.split(",")
+
+  datosOptenidos=EliminarDatoInicialSiEstaVacio(datosOptenidos);
+
+  return datosOptenidos;
+}
+
+
+function convertirArrayAEnteros(array) {
+  for (let i = 0; i < array.length; i++) {
+    array[i] = Number(array[i]);
+  }
+  return array;
+}
+
+
+function mostrarAhorro(array){
+
+    let ahorroDiv = getElementById("mostrar-ahorro")
+    let nuevoElemento = document.createElement("p")
+    nuevoElemento.textContent = "Ahorro total: "//ojo
+    ahorroDiv.appendChild(nuevoElemento);
+
+}

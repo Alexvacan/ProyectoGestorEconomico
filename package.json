@@ -7,11 +7,7 @@
     "start": "parcel index.html",
     "build": "parcel build index.html",
     "test": "jest --watch",
-<<<<<<<<< Temporary merge branch 1
-    "test-once": "jest ClassUsuarios.spec.js",
-=========
     "test-once": "jest ahorros.spec.js",
->>>>>>>>> Temporary merge branch 2
     "cypress": "cypress open",
     "cypress-run": "cypress run"
   },

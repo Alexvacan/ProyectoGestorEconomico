@@ -1,5 +1,5 @@
-import Gastos from "./gastos";
-import Ingresos from "./ingresos";
+import Gastos from "../../src/gastos";
+import Ingresos from "../../src/ingresos";
 
 class Ahorros {
   constructor() {
