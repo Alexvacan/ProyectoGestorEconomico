@@ -53,7 +53,6 @@
         const ingresos = new Ingresos();
         const gastos = new Gastos();
 
-        // Función para registrar ingresos
         function registrarIngreso() {
             const descripcion = document.getElementById('ingresoDescripcion').value;
             const monto = parseFloat(document.getElementById('ingresoMonto').value);
@@ -74,7 +73,6 @@
             }
         }
 
-        // Función para registrar gastos
         function registrarGasto() {
             const descripcion = document.getElementById('gastoDescripcion').value;
             const monto = parseFloat(document.getElementById('gastoMonto').value);
@@ -95,7 +93,6 @@
             }
         }
 
-        // Función para actualizar los totales de ingresos, gastos y diferencia
         function actualizarTotales() {
             const totalIngresos = ingresos.obtenerIngresos().reduce((total, ingreso) => total + ingreso.monto, 0);
             const totalGastos = gastos.obtenerGastos().reduce((total, gasto) => total + gasto.monto, 0);
@@ -106,7 +103,6 @@
             document.getElementById('diferencia').innerText = diferencia;
         }
 
-        // Función para limpiar los formularios
         function limpiarFormulario(tipo) {
             if (tipo === 'ingreso') {
                 document.getElementById('ingresoDescripcion').value = '';
@@ -119,7 +115,6 @@
             }
         }
 
-        // Asignación de eventos a los botones
         document.getElementById('btnRegistrarIngreso').addEventListener('click', registrarIngreso);
         document.getElementById('btnRegistrarGasto').addEventListener('click', registrarGasto);
     </script>

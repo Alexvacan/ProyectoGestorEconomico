@@ -28,7 +28,7 @@
         <input type="text" id="ingresoDescripcion" placeholder="Descripción" />
         <input type="number" id="ingresoMonto" placeholder="Monto" />
         <input type="date" id="ingresoFecha" />
-        <button onclick="registrarIngreso()">Agregar Ingreso</button>
+        <button id="btnRegistrarIngreso">Agregar Ingreso</button>
     </div>
 
     <div class="formulario">
@@ -36,7 +36,7 @@
         <input type="text" id="gastoDescripcion" placeholder="Descripción" />
         <input type="number" id="gastoMonto" placeholder="Monto" />
         <input type="date" id="gastoFecha" />
-        <button onclick="registrarGasto()">Agregar Gasto</button>
+        <button id="btnRegistrarGasto">Agregar Gasto</button>
     </div>
 
     <div class="resultados">
@@ -47,8 +47,8 @@
     </div>
 
     <script type="module">
-        import Ingresos from './ingresos.js';
-        import Gastos from './gastos.js';
+        import Ingresos from '../src/ingresos.js';
+        import Gastos from '../src/gastos.js';
 
         const ingresos = new Ingresos();
         const gastos = new Gastos();
@@ -114,6 +114,9 @@
                 document.getElementById('gastoFecha').value = '';
             }
         }
+
+        document.getElementById('btnRegistrarIngreso').addEventListener('click', registrarIngreso);
+        document.getElementById('btnRegistrarGasto').addEventListener('click', registrarGasto);
     </script>
 
 </body>
