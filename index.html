@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
+<head>
     <title>Login</title>
     <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
+</head>
+<body>
     
-    <form id="login-form" action="paginaPrincipal.html" method="post">
+    <form id="login-form" action="./paginas/EstadoFinanciero.html" method="get">
       <h2>Iniciar Sesión</h2>
       <label for="nombre-usuario">Nombre de usuario:</label>
       <input type="text" id="nombre-usuario" name="nombre-usuario" required /><br /><br />
       
       <label for="contraseña">Contraseña:</label>
-      <input type="contraseña" id="contraseña" name="contraseña" required /><br /><br />
+      <input type="password" id="contraseña" name="contraseña" required /><br /><br />
+        <button type="button" id="button-inicio-con-datos">Iniciar Sesión</button>
       
-      <button type="submit" onclick="location.href='./paginas/paginaPrincipal.html'">Iniciar Sesión</button>
     </form>
 
     <form id="login-sin-cuenta-form">
-      <button id="login-sin-cuenta-button" type="button" value="Ingresar Sin Cuenta" onclick="location.href='./paginas/paginaPrincipal.html'">Ingresar Sin Cuenta</button>
+      <a href="./paginas/IngresoDatosDiarios/PaginaPrincipal.html">
+        <button id="login-sin-cuenta-button" type="button">Ingresar Sin Cuenta</button>
+      </a>
     </form>
+
     <script type="module" src="./src/presenter.js"></script>
 
-  </body>
+</body>
 </html>
