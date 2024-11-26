@@ -88,12 +88,46 @@ function convertirArrayAEnteros(array) {
   return array;
 }
 
-
-function mostrarAhorro(array){
-
-    let ahorroDiv = getElementById("mostrar-ahorro")
-    let nuevoElemento = document.createElement("p")
-    nuevoElemento.textContent = "Ahorro total: "//ojo
-    ahorroDiv.appendChild(nuevoElemento);
+function sumarArray(array)
+{
+    let resultado=0;
+    for (let i=0; i<array.length; i++)
+    {
+        resultado=resultado+array[i];
+        
+    }
+    return resultado;
 
 }
+
+
+function mostrarAhorro(arrayGastos,arrayIngresos){
+
+    let totalGastos = sumarArray(arrayGastos);
+    let totalIngresos = sumarArray(arrayIngresos);
+    let ahorroDiv = document.getElementById("mostrar-ahorro")
+    ahorroDiv.innerHTML = "";
+
+    // Crea y agrega los elementos de ahorro total, ingresos y gastos
+    let ahorroTotalElemento = document.createElement("p");
+    ahorroTotalElemento.textContent = `Ahorro total: ${totalIngresos - totalGastos}`;
+    ahorroDiv.appendChild(ahorroTotalElemento);
+
+    let totalGastosElemento = document.createElement("p");
+    totalGastosElemento.textContent = `Total gastos: ${totalGastos}`;
+    ahorroDiv.appendChild(totalGastosElemento);
+
+    let totalIngresosElemento = document.createElement("p");
+    totalIngresosElemento.textContent = `Total ingresos: ${totalIngresos}`;
+    ahorroDiv.appendChild(totalIngresosElemento);
+
+}
+DatosGastos=OptenerDatosLocalStoreCorrectamente(NombreClave)
+DatosGastos=convertirArrayAEnteros(DatosGastos)
+
+DatosIngresos=OptenerDatosLocalStoreCorrectamente(NombreClaveIngresos)
+DatosIngresos=convertirArrayAEnteros(DatosIngresos)
+mostrarAhorro(DatosGastos,DatosIngresos)
+
+
+

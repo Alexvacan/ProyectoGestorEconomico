@@ -1,5 +1,3 @@
-/* styleGastos.css */
-
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f8ff;
@@ -18,7 +16,7 @@ h2 {
     text-align: center;
 }
 
-#mostrar-Gastos, #mostrar-Ingresos {
+#mostrar-Gastos, #mostrar-Ingresos, #mostrar-ahorro {
     background-color: #ffffff;
     border: 2px solid #008080;
     border-radius: 10px;
@@ -29,7 +27,7 @@ h2 {
     max-width: 600px;
 }
 
-#mostrar-Gastos .Gasto, #mostrar-Ingresos .Ingreso {
+.Gasto, .Ingreso {
     background-color: #f9f9f9;
     border: 1px solid #008080;
     border-radius: 5px;
@@ -40,21 +38,43 @@ h2 {
     transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-#mostrar-Gastos .Gasto:hover, #mostrar-Ingresos .Ingreso:hover {
+.Gasto:hover, .Ingreso:hover {
     background-color: #e0f7f7;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-#mostrar-Gastos .Gasto p, #mostrar-Ingresos .Ingreso p {
+.Gasto p, .Ingreso p {
     margin: 0;
     color: #333;
     font-weight: bold;
 }
 
+/* Específicos para ingresos */
 #mostrar-Ingresos {
     border-color: #004d4d; /* Verde más oscuro para ingresos */
 }
 
-#mostrar-Ingresos .Ingreso {
+.Ingreso {
     border-color: #004d4d; /* Borde verde oscuro */
+}
+
+/* Estilo para el ahorro */
+#mostrar-ahorro {
+    background-color: #f5f5f5; /* Fondo claro */
+    border: 2px solid #ff8c00; /* Borde naranja */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#mostrar-ahorro p {
+    margin: 10px 0;
+    color: #555;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+/* Hover para el ahorro */
+#mostrar-ahorro p:hover {
+    color: #ff8c00; /* Naranja para resaltar al pasar el mouse */
 }
