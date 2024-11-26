@@ -1,34 +1,60 @@
-#mostrar-Gastos {
-    padding: 20px;
-    background-color: #f3f3f3;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-width: 600px;
-    margin: auto;
-}
+/* styleGastos.css */
 
-#mostrar-Gastos .Gasto {
-    background-color: #fff;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-#mostrar-Gastos .Gasto:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-}
-
-#mostrar-Gastos .Gasto h3 {
-    margin: 0 0 10px;
-    font-size: 1.2em;
-    color: #333;
-}
-
-#mostrar-Gastos .Gasto p {
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
     margin: 0;
-    color: #555;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#mostrar-Gastos, #mostrar-Ingresos {
+    background-color: #ffffff;
+    border: 2px solid #008080;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+}
+
+#mostrar-Gastos .Gasto, #mostrar-Ingresos .Ingreso {
+    background-color: #f9f9f9;
+    border: 1px solid #008080;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 1em;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+#mostrar-Gastos .Gasto:hover, #mostrar-Ingresos .Ingreso:hover {
+    background-color: #e0f7f7;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#mostrar-Gastos .Gasto p, #mostrar-Ingresos .Ingreso p {
+    margin: 0;
+    color: #333;
+    font-weight: bold;
+}
+
+#mostrar-Ingresos {
+    border-color: #004d4d; /* Verde más oscuro para ingresos */
+}
+
+#mostrar-Ingresos .Ingreso {
+    border-color: #004d4d; /* Borde verde oscuro */
 }
