@@ -8,7 +8,7 @@
     "start": "parcel index.html",
     "build": "parcel build index.html",
     "test": "jest --watch",
-    "test-once": "jest ManejoDeDatos.spec.js",
+    "test-once": "jest ahorros.spec.js",
     "cypress": "cypress open",
     "cypress-run": "cypress run"
   },

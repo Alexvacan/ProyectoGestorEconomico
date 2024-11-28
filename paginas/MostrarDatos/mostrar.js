@@ -3,6 +3,13 @@ let manejoDeDatos = new ManejoDeDatos
 const NombreClave = "datos-De-Gastos-diarios-Gastos";
 const NombreClaveFechas="Fecha-Gastos"
 const NombreClaveHoras="Hora-Gastos"
+
+
+const NombreClaveIngresos = "datos-De-Gastos-diarios-Ingresos";
+const NombreClaveIngresosFechas="Fecha-Ingresos"
+const NombreClaveIngresosHoras="Hora-Ingresos"
+
+
 let DatosGastos=localStorage.getItem(NombreClave)
 let fechasGuardadas=localStorage.getItem(NombreClaveFechas)
 let horasGuardadas=localStorage.getItem(NombreClaveHoras)
@@ -27,9 +34,6 @@ else{
     mostrarDiv.textContent='No hay datos guardados.'
 }
 
-const NombreClaveIngresos = "datos-De-Gastos-diarios-Ingresos";
-const NombreClaveIngresosFechas="Fecha-Ingresos"
-const NombreClaveIngresosHoras="Hora-Ingresos"
 let DatosIngresos=localStorage.getItem(NombreClaveIngresos)
 let fechasGuardadasIngresos=localStorage.getItem(NombreClaveIngresosFechas)
 let horasGuardadasIngresos=localStorage.getItem(NombreClaveIngresosHoras)

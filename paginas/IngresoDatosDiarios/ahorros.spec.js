@@ -1,4 +1,4 @@
-import Ahorros from "./IngresoDatosDiarios/ahorros";
+import Ahorros from "./ahorros";
 
 describe("Ahorros", () => {
   it("debería registrar un ingreso correctamente", () => {
