@@ -26,7 +26,7 @@ class ManejoDeDatos{
   }
   
   convertirArrayAEnteros(array){
-    
+    return array
   }
 }
 
