@@ -1,6 +1,9 @@
 class ManejoDeDatos{
     EliminarDatoInicialSiEstaVacio(array) {
-        return array;
+      if (array[0] === "") {
+        array.shift();
+      }
+      return array;
     }
 
 }
