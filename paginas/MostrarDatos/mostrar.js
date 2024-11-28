@@ -52,24 +52,10 @@ if(DatosIngresos.length >= 0) {
 }
 
 
-
-function sumarArray(array)
-{
-    let resultado=0;
-    for (let i=0; i<array.length; i++)
-    {
-        resultado=resultado+array[i];
-        
-    }
-    return resultado;
-
-}
-
-
 function mostrarAhorro(arrayGastos,arrayIngresos){
 
-    let totalGastos = sumarArray(arrayGastos);
-    let totalIngresos = sumarArray(arrayIngresos);
+    let totalGastos = manejoDeDatos.sumaArray(arrayGastos);
+    let totalIngresos = manejoDeDatos.sumaArray(arrayIngresos);
     let ahorroDiv = document.getElementById("mostrar-ahorro")
     ahorroDiv.innerHTML = "";
 
