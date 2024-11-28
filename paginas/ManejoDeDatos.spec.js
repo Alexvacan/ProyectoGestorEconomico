@@ -24,3 +24,13 @@ describe("Pruebas de la funcion convertirArrayAEnteros",()=>{
         expect(manejoDeDatos.convertirArrayAEnteros(array)).toEqual(arrayEsperado)
     })
 })
+
+
+describe("Pruebas de la funcion SumaArray",()=>{
+    let manejoDeDatos = new ManejoDeDatos
+    it("La funcion deberia devolver un numero y resivir un array",()=>{
+        let array=[1,2,3]
+        expect(manejoDeDatos.sumaArray(array)).toEqual(array)
+    })
+})
+

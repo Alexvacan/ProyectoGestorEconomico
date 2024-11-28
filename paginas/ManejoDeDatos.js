@@ -31,6 +31,9 @@ class ManejoDeDatos{
     }
     return array;
   }
+  sumaArray(array){
+    
+  }
 }
 
 export default ManejoDeDatos

@@ -1,3 +1,5 @@
+import ManejoDeDatos from "../ManejoDeDatos";
+let manejoDeDatos = new ManejoDeDatos
 const NombreClave = "datos-De-Gastos-diarios-Gastos";
 const NombreClaveFechas="Fecha-Gastos"
 const NombreClaveHoras="Hora-Gastos"
@@ -51,43 +53,6 @@ if(DatosIngresos.length >= 0) {
 
 
 
-
-
-function ControlarQueLocaStoreNoEsteVacio(nombreClave)
-{
-  if (localStorage.getItem(nombreClave) === null) {
-    localStorage.setItem(nombreClave, [""]);
-  }
-}
-
-function EliminarDatoInicialSiEstaVacio(array)
-{
-  if (array[0] === "") {
-    array.shift();
-  }
-  return array;
-}
-
-
-function OptenerDatosLocalStoreCorrectamente(nombreClave)
-{
-  ControlarQueLocaStoreNoEsteVacio(nombreClave);
-  let datosOptenidos=localStorage.getItem(nombreClave)
-  datosOptenidos=datosOptenidos.split(",")
-
-  datosOptenidos=EliminarDatoInicialSiEstaVacio(datosOptenidos);
-
-  return datosOptenidos;
-}
-
-
-function convertirArrayAEnteros(array) {
-  for (let i = 0; i < array.length; i++) {
-    array[i] = Number(array[i]);
-  }
-  return array;
-}
-
 function sumarArray(array)
 {
     let resultado=0;
@@ -122,11 +87,11 @@ function mostrarAhorro(arrayGastos,arrayIngresos){
     ahorroDiv.appendChild(totalIngresosElemento);
 
 }
-DatosGastos=OptenerDatosLocalStoreCorrectamente(NombreClave)
-DatosGastos=convertirArrayAEnteros(DatosGastos)
+DatosGastos=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClave)
+DatosGastos=manejoDeDatos.convertirArrayAEnteros(DatosGastos)
 
-DatosIngresos=OptenerDatosLocalStoreCorrectamente(NombreClaveIngresos)
-DatosIngresos=convertirArrayAEnteros(DatosIngresos)
+DatosIngresos=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveIngresos)
+DatosIngresos=manejoDeDatos.convertirArrayAEnteros(DatosIngresos)
 mostrarAhorro(DatosGastos,DatosIngresos)
 
 
