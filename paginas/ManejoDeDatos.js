@@ -32,7 +32,13 @@ class ManejoDeDatos{
     return array;
   }
   sumaArray(array){
-    return 6
+    let resultado=0;
+    for (let i=0; i<array.length; i++)
+    {
+        resultado=resultado+array[i];
+        
+    }
+    return resultado;
   }
 }
 
