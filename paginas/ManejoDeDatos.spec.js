@@ -32,5 +32,10 @@ describe("Pruebas de la funcion SumaArray",()=>{
         let array=[1,2,3]
         expect(manejoDeDatos.sumaArray(array)).toEqual(6)
     })
+    it("La funcion deberia devolver un la suma de un array y resivir un array",()=>{
+        let array=[3,4,6]
+        let sumaEsperada=13
+        expect(manejoDeDatos.sumaArray(array)).toEqual(sumaEsperada)
+    })
 })
 
