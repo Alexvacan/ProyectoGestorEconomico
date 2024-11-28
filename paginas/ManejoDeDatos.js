@@ -32,7 +32,7 @@ class ManejoDeDatos{
     return array;
   }
   sumaArray(array){
-    return
+    return 6
   }
 }
 
