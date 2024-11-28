@@ -18,4 +18,9 @@ describe("Pruebas de la funcion convertirArrayAEnteros",()=>{
         let array=[1,2,3]
         expect(manejoDeDatos.convertirArrayAEnteros(array)).toEqual(array)
     })
+    it("La funcion deberia recivir un array de enteros con numeros en texto y devolver una array de enteros",()=>{
+        let array=['1','2','3']
+        let arrayEsperado=[1,2,3]
+        expect(manejoDeDatos.convertirArrayAEnteros(array)).toEqual(arrayEsperado)
+    })
 })
