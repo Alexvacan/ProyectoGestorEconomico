@@ -1,5 +1,5 @@
 import ManejoDeDatos from "./ManejoDeDatos";
-describe("Manejo de arrays",()=>{
+describe("Pruebas de la funcion EliminarDatoInicialSiEstaVacio",()=>{
     let manejoDeDatos = new ManejoDeDatos
     it("La funcion deberia devolver la funcion tal cual si el valor en la pocicion 0 no esta vacio",()=>{
         let array=['1','2','3']
@@ -9,5 +9,13 @@ describe("Manejo de arrays",()=>{
         let array=['','2','3']
         let arrayEsperado=['2','3']
         expect(manejoDeDatos.EliminarDatoInicialSiEstaVacio(array)).toEqual(arrayEsperado)
+    })
+})
+
+describe("Pruebas de la funcion convertirArrayAEnteros",()=>{
+    let manejoDeDatos = new ManejoDeDatos
+    it("La funcion deberia devolver una array de enteros",()=>{
+        let array=[1,2,3]
+        expect(manejoDeDatos.convertirArrayAEnteros(array)).toEqual(array)
     })
 })

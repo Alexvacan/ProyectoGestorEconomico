@@ -1,45 +1,40 @@
 class ManejoDeDatos{
-    EliminarDatoInicialSiEstaVacio(array) {
-      if (array[0] === "") {
-        array.shift();
-      }
-      return array;
-    }
 
+  OptenerDatosLocalStoreCorrectamente(nombreClave)
+  {
+    ControlarQueLocaStoreNoEsteVacio(nombreClave);
+    let datosOptenidos=localStorage.getItem(nombreClave)
+    datosOptenidos=datosOptenidos.split(",")
+  
+    datosOptenidos=EliminarDatoInicialSiEstaVacio(datosOptenidos);
+  
+    return datosOptenidos;
+  }
+
+  EliminarDatoInicialSiEstaVacio(array) {
+    if (array[0] === "") {
+      array.shift();
+    }
+    return array;
+  }
+
+  ControlarQueLocaStoreNoEsteVacio(nombreClave)
+  {
+    if (localStorage.getItem(nombreClave) === null) {
+      localStorage.setItem(nombreClave, [""]);
+    }
+  }
+  
+  convertirArrayAEnteros(array){
+    
+  }
 }
 
 export default ManejoDeDatos;
 /*
 const NombreClave = "datos-De-Gastos-diarios-Gastos";
 const NombreClaveFechas="Fecha-Gastos"
-const NombreClaveHoras="Hora-Gastos"
-
-function ControlarQueLocaStoreNoEsteVacio(nombreClave)
-{
-  if (localStorage.getItem(nombreClave) === null) {
-    localStorage.setItem(nombreClave, [""]);
-  }
-}
-
-function EliminarDatoInicialSiEstaVacio(array)
-{
-  if (array[0] === "") {
-    array.shift();
-  }
-  return array;
-}
-
-
-function OptenerDatosLocalStoreCorrectamente(nombreClave)
-{
-  ControlarQueLocaStoreNoEsteVacio(nombreClave);
-  let datosOptenidos=localStorage.getItem(nombreClave)
-  datosOptenidos=datosOptenidos.split(",")
-
-  datosOptenidos=EliminarDatoInicialSiEstaVacio(datosOptenidos);
-
-  return datosOptenidos;
-}
+const NombreClaveHoras="Hora-Gastos" 
 
 
 function convertirArrayAEnteros(array) {
