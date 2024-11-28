@@ -1,4 +1,4 @@
-import ManejoDeDatos from "./ManejoDeDatos";
+import ManejoDeDatos from "./ManejoDeDatos.js";
 let manejoDeDatos = new ManejoDeDatos
 const NombreClaveIngresos = "datos-De-Gastos-diarios-Ingresos";
 const NombreClaveIngresosFechas="Fecha-Ingresos"

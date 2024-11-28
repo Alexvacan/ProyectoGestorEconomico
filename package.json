@@ -1,7 +1,8 @@
 {
   "name": "parcel-jest-base",
   "version": "1.0.0",
-  "description": "",
+  "type": "module",
+  "description": "npm install",
   "default": "index.html",
   "scripts": {
     "start": "parcel index.html",
@@ -23,5 +24,7 @@
   },
   "dependencies": {
     "start": "^5.1.0"
-  }
+  },
+  "main": "cypress.config.js",
+  "keywords": []
 }

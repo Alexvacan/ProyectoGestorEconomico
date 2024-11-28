@@ -33,4 +33,4 @@ class ManejoDeDatos{
   }
 }
 
-export default ManejoDeDatos;
+export default ManejoDeDatos
