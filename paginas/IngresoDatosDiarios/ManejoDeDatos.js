@@ -1,6 +1,6 @@
 class ManejoDeDatos{
     EliminarDatoInicialSiEstaVacio(array) {
-        
+        return array
     }
 
 }
