@@ -26,7 +26,10 @@ class ManejoDeDatos{
   }
   
   convertirArrayAEnteros(array){
-    return array
+    for (let i = 0; i < array.length; i++) {
+      array[i] = Number(array[i]);
+    }
+    return array;
   }
 }
 
