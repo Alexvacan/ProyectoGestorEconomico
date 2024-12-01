@@ -1,6 +1,6 @@
 import ManejoDeDatos from "../ManejoDeDatos";
 let manejoDeDatos = new ManejoDeDatos
-const NombreClave = "datos-De-Gastos-diarios-Gastos";
+const NombreClaveGastos = "datos-De-Gastos-diarios-Gastos";
 const NombreClaveFechas="Fecha-Gastos"
 const NombreClaveHoras="Hora-Gastos"
 
@@ -8,10 +8,27 @@ const NombreClaveIngresos = "datos-De-Gastos-diarios-Ingresos";
 const NombreClaveIngresosFechas="Fecha-Ingresos"
 const NombreClaveIngresosHoras="Hora-Ingresos"
 
-
-let DatosGastos=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClave)
+let DatosGastos=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveGastos)
 let fechasGuardadas=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveFechas)
 let horasGuardadas=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveHoras)
+
+MostrarDatos(DatosGastos,'Gasto','mostrar-Gastos',fechasGuardadas,horasGuardadas)
+
+let DatosIngresos=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveIngresos)
+let fechasGuardadasIngresos=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveIngresosFechas)
+let horasGuardadasIngresos=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveIngresosHoras)
+
+MostrarDatos(DatosIngresos,'Ingreso','mostrar-Ingresos',fechasGuardadasIngresos,horasGuardadasIngresos)
+
+
+DatosGastos=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveGastos)
+DatosGastos=manejoDeDatos.convertirArrayAEnteros(DatosGastos)
+
+DatosIngresos=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveIngresos)
+DatosIngresos=manejoDeDatos.convertirArrayAEnteros(DatosIngresos)
+mostrarAhorro(DatosGastos,DatosIngresos)
+
+
 
 function MostrarDatos(datos,NuevaClase,NombreElemento,fechas,horas)
 {
@@ -21,7 +38,7 @@ function MostrarDatos(datos,NuevaClase,NombreElemento,fechas,horas)
         {
             let divElemento = document.createElement('div');
             divElemento.classList.add(NuevaClase)
-            divElemento.textContent="Fecha del Gasto: "+fechas[i]+" Hora: "+horas[i]+" Monto: "+DatosGastos[i];
+            divElemento.textContent="Fecha del Gasto: "+fechas[i]+" Hora: "+horas[i]+" Monto: "+datos[i];
             mostrarDiv.appendChild(divElemento);
         }
 
@@ -31,13 +48,6 @@ function MostrarDatos(datos,NuevaClase,NombreElemento,fechas,horas)
     }
 }
 
-MostrarDatos(DatosGastos,'Gasto','mostrar-Gastos',fechasGuardadas,horasGuardadas)
-
-let DatosIngresos=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveIngresos)
-let fechasGuardadasIngresos=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveIngresosFechas)
-let horasGuardadasIngresos=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveIngresosHoras)
-
-MostrarDatos(DatosIngresos,'Ingreso','mostrar-Ingresos',fechasGuardadasIngresos,horasGuardadasIngresos)
 
 function mostrarAhorro(arrayGastos,arrayIngresos){
 
@@ -60,9 +70,3 @@ function mostrarAhorro(arrayGastos,arrayIngresos){
     ahorroDiv.appendChild(totalIngresosElemento);
 
 }
-DatosGastos=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClave)
-DatosGastos=manejoDeDatos.convertirArrayAEnteros(DatosGastos)
-
-DatosIngresos=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveIngresos)
-DatosIngresos=manejoDeDatos.convertirArrayAEnteros(DatosIngresos)
-mostrarAhorro(DatosGastos,DatosIngresos)
