@@ -9,6 +9,37 @@ const NombreClaveFechas="Fecha-Gastos"
 const NombreClaveHoras="Hora-Gastos"
 
 
+function GuardarDatos(NomcreFormulario,NombreClaveDatos,NombreClaveFechas,NombreClaveHoras)
+{
+  document.getElementById(formulario).addEventListener("submit", function (event) {
+    event.preventDefault();
+    const fechaActual = new Date();
+    let dia = fechaActual.getDate();
+    let mes = fechaActual.getMonth() + 1;
+    let anio = fechaActual.getFullYear();
+    let hora = fechaActual.getHours();
+    let minuto = fechaActual.getMinutes();
+  
+    let fechaMesDiaActual = anio.toString() + "-" + mes.toString() + "-" + dia.toString();
+    let horaActual = hora.toString() + ":" + minuto.toString();
+  
+    let fechas=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveFechas)
+    let horas=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveHoras)
+  
+  
+    let Datos = manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveDatos);
+    Datos.push(document.getElementById("dato-Ingresos").value);
+    fechas.push(fechaMesDiaActual)
+    horas.push(horaActual)
+  
+    localStorage.setItem(NombreClaveDatos, Datos);
+    localStorage.setItem(NombreClaveFechas,fechas);
+    localStorage.setItem(NombreClaveHoras, horas);
+    alert("El Gasto fue guardado correctamente")
+  });  
+}
+
+
 document.getElementById("form-datos-Ingresos").addEventListener("submit", function (event) {
   event.preventDefault();
   const fechaActual = new Date();
