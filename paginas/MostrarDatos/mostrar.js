@@ -4,31 +4,24 @@ const NombreClave = "datos-De-Gastos-diarios-Gastos";
 const NombreClaveFechas="Fecha-Gastos"
 const NombreClaveHoras="Hora-Gastos"
 
-
 const NombreClaveIngresos = "datos-De-Gastos-diarios-Ingresos";
 const NombreClaveIngresosFechas="Fecha-Ingresos"
 const NombreClaveIngresosHoras="Hora-Ingresos"
 
 
 let DatosGastos=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClave)
-let fechasGuardadas=localStorage.getItem(NombreClaveFechas)
-let horasGuardadas=localStorage.getItem(NombreClaveHoras)
+let fechasGuardadas=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveFechas)
+let horasGuardadas=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveHoras)
 
-
-let mostrarDiv=document.getElementById('mostrar-Gastos')
-fechasGuardadas=fechasGuardadas.split(',')
-horasGuardadas=horasGuardadas.split(',')
-
-
-
-function MostrarDatos(datos,idElemento)
+function MostrarDatos(datos,NuevaClase,NombreElemento,fechas,horas)
 {
+    let mostrarDiv=document.getElementById(NombreElemento)
     if(datos.length>=0){
         for(let i=0;i<datos.length;i++)
         {
             let divElemento = document.createElement('div');
-            divElemento.classList.add(idElemento)
-            divElemento.textContent="Fecha del Gasto: "+fechasGuardadas[i]+" Hora: "+horasGuardadas[i]+" Monto: "+DatosGastos[i];
+            divElemento.classList.add(NuevaClase)
+            divElemento.textContent="Fecha del Gasto: "+fechas[i]+" Hora: "+horas[i]+" Monto: "+DatosGastos[i];
             mostrarDiv.appendChild(divElemento);
         }
 
@@ -38,29 +31,13 @@ function MostrarDatos(datos,idElemento)
     }
 }
 
-MostrarDatos(DatosGastos,'Gasto')
+MostrarDatos(DatosGastos,'Gasto','mostrar-Gastos',fechasGuardadas,horasGuardadas)
 
-let DatosIngresos=localStorage.getItem(NombreClaveIngresos)
-let fechasGuardadasIngresos=localStorage.getItem(NombreClaveIngresosFechas)
-let horasGuardadasIngresos=localStorage.getItem(NombreClaveIngresosHoras)
+let DatosIngresos=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveIngresos)
+let fechasGuardadasIngresos=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveIngresosFechas)
+let horasGuardadasIngresos=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveIngresosHoras)
 
-
-let mostrarDivIngresos=document.getElementById('mostrar-Ingresos')
-DatosIngresos=DatosIngresos.split(',')
-fechasGuardadasIngresos=fechasGuardadasIngresos.split(',')
-horasGuardadasIngresos=horasGuardadasIngresos.split(',')
-
-if(DatosIngresos.length >= 0) {
-    for(let i = 0; i < DatosIngresos.length; i++) {
-        let divElemento = document.createElement('div');
-        divElemento.classList.add('Ingreso');
-        divElemento.textContent = "Fecha del Ingreso: " + fechasGuardadasIngresos[i] + " Hora: " + horasGuardadasIngresos[i] + " Monto: " + DatosIngresos[i];
-        mostrarDivIngresos.appendChild(divElemento); // Usamos mostrarDivIngresos aquí
-    }
-} else {
-    mostrarDivIngresos.textContent = 'No hay datos guardados.';
-}
-
+MostrarDatos(DatosIngresos,'Ingreso','mostrar-Ingresos',fechasGuardadasIngresos,horasGuardadasIngresos)
 
 function mostrarAhorro(arrayGastos,arrayIngresos){
 
@@ -89,6 +66,3 @@ DatosGastos=manejoDeDatos.convertirArrayAEnteros(DatosGastos)
 DatosIngresos=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveIngresos)
 DatosIngresos=manejoDeDatos.convertirArrayAEnteros(DatosIngresos)
 mostrarAhorro(DatosGastos,DatosIngresos)
-
-
-
