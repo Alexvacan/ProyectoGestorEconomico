@@ -11,20 +11,16 @@ const NombreClaveIngresosHoras="Hora-Ingresos"
 let DatosGastos=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveGastos)
 let fechasGuardadas=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveFechas)
 let horasGuardadas=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveHoras)
-
 MostrarDatos(DatosGastos,'Gasto','mostrar-Gastos',fechasGuardadas,horasGuardadas)
+
 
 let DatosIngresos=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveIngresos)
 let fechasGuardadasIngresos=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveIngresosFechas)
 let horasGuardadasIngresos=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveIngresosHoras)
-
 MostrarDatos(DatosIngresos,'Ingreso','mostrar-Ingresos',fechasGuardadasIngresos,horasGuardadasIngresos)
 
 
-DatosGastos=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveGastos)
 DatosGastos=manejoDeDatos.convertirArrayAEnteros(DatosGastos)
-
-DatosIngresos=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveIngresos)
 DatosIngresos=manejoDeDatos.convertirArrayAEnteros(DatosIngresos)
 mostrarAhorro(DatosGastos,DatosIngresos)
 
