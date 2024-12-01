@@ -9,9 +9,9 @@ const NombreClaveFechas="Fecha-Gastos"
 const NombreClaveHoras="Hora-Gastos"
 
 
-function GuardarDatos(NomcreFormulario,NombreClaveDatos,NombreClaveFechas,NombreClaveHoras)
+function GuardarDatos(NomcreFormulario,NombreClaveDatos,NombreClaveFechas,NombreClaveHoras,NombreElementoAguardar)
 {
-  document.getElementById(formulario).addEventListener("submit", function (event) {
+  document.getElementById(NomcreFormulario).addEventListener("submit", function (event) {
     event.preventDefault();
     const fechaActual = new Date();
     let dia = fechaActual.getDate();
@@ -28,7 +28,7 @@ function GuardarDatos(NomcreFormulario,NombreClaveDatos,NombreClaveFechas,Nombre
   
   
     let Datos = manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveDatos);
-    Datos.push(document.getElementById("dato-Ingresos").value);
+    Datos.push(document.getElementById(NombreElementoAguardar).value);
     fechas.push(fechaMesDiaActual)
     horas.push(horaActual)
   
@@ -39,33 +39,7 @@ function GuardarDatos(NomcreFormulario,NombreClaveDatos,NombreClaveFechas,Nombre
   });  
 }
 
-
-document.getElementById("form-datos-Ingresos").addEventListener("submit", function (event) {
-  event.preventDefault();
-  const fechaActual = new Date();
-  let dia = fechaActual.getDate();
-  let mes = fechaActual.getMonth() + 1;
-  let anio = fechaActual.getFullYear();
-  let hora = fechaActual.getHours();
-  let minuto = fechaActual.getMinutes();
-
-  let fechaMesDiaActual = anio.toString() + "-" + mes.toString() + "-" + dia.toString();
-  let horaActual = hora.toString() + ":" + minuto.toString();
-
-  let fechasGuardadas=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveIngresosFechas)
-  let horasGuardadas=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveIngresosHoras)
-
-
-  let DatosGastos = manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveIngresos);
-  DatosGastos.push(document.getElementById("dato-Ingresos").value);
-  fechasGuardadas.push(fechaMesDiaActual)
-  horasGuardadas.push(horaActual)
-
-  localStorage.setItem(NombreClaveIngresos, DatosGastos);
-  localStorage.setItem(NombreClaveIngresosFechas,fechasGuardadas);
-  localStorage.setItem(NombreClaveIngresosHoras, horasGuardadas);
-  alert("El Gasto fue guardado correctamente")
-});
+GuardarDatos("form-datos-Ingresos",NombreClaveIngresos,NombreClaveIngresosFechas,NombreClaveIngresosHoras,"dato-Ingresos")
 
 document.getElementById("form-eliminar-Ingresos").addEventListener("submit", function (event) {
   event.preventDefault();
@@ -93,32 +67,10 @@ document.getElementById("form-eliminar-Ingresos").addEventListener("submit", fun
 
   });
 
-document.getElementById("form-datos-Gastos").addEventListener("submit", function (e) {
-  e.preventDefault();
-  const fechaActual = new Date();
-  let dia = fechaActual.getDate();
-  let mes = fechaActual.getMonth() + 1;
-  let anio = fechaActual.getFullYear();
-  let hora = fechaActual.getHours();
-  let minuto = fechaActual.getMinutes();
-
-  let fechaMesDiaActual = anio.toString() + "-" + mes.toString() + "-" + dia.toString();
-  let horaActual = hora.toString() + ":" + minuto.toString();
-
-  let fechasGuardadas=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveFechas)
-  let horasGuardadas=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveHoras)
 
 
-  let DatosGastos = manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClave);
-  DatosGastos.push(document.getElementById("dato").value);
-  fechasGuardadas.push(fechaMesDiaActual)
-  horasGuardadas.push(horaActual)
+  GuardarDatos("form-datos-Gastos",NombreClave,NombreClaveFechas,NombreClaveHoras,"dato")
 
-  localStorage.setItem(NombreClave, DatosGastos);
-  localStorage.setItem(NombreClaveFechas,fechasGuardadas);
-  localStorage.setItem(NombreClaveHoras, horasGuardadas);
-  alert("El Gasto fue guardado correctamente")
-});
 
 document.getElementById("form-eliminar-Gastos").addEventListener("submit", function (e) {
     e.preventDefault();
