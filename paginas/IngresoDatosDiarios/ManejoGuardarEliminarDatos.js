@@ -9,6 +9,16 @@ const NombreClaveFechas="Fecha-Gastos"
 const NombreClaveHoras="Hora-Gastos"
 
 
+
+
+GuardarDatos("form-datos-Ingresos",NombreClaveIngresos,NombreClaveIngresosFechas,NombreClaveIngresosHoras,"dato-Ingresos")
+EliminarDatos("form-eliminar-Ingresos","dato-a-eliminar-Ingresos",NombreClaveIngresos,NombreClaveIngresosFechas,NombreClaveIngresosHoras)
+
+
+GuardarDatos("form-datos-Gastos",NombreClave,NombreClaveFechas,NombreClaveHoras,"dato")
+EliminarDatos("form-eliminar-Gastos","dato-a-eliminar",NombreClave,NombreClaveFechas,NombreClaveHoras)
+
+
 function GuardarDatos(NomcreFormulario,NombreClaveDatos,NombreClaveFechas,NombreClaveHoras,NombreElementoAguardar)
 {
   document.getElementById(NomcreFormulario).addEventListener("submit", function (event) {
@@ -39,61 +49,33 @@ function GuardarDatos(NomcreFormulario,NombreClaveDatos,NombreClaveFechas,Nombre
   });  
 }
 
-GuardarDatos("form-datos-Ingresos",NombreClaveIngresos,NombreClaveIngresosFechas,NombreClaveIngresosHoras,"dato-Ingresos")
 
-document.getElementById("form-eliminar-Ingresos").addEventListener("submit", function (event) {
-  event.preventDefault();
-    let Numero_a_eliminar = Number(document.getElementById("dato-a-eliminar-Ingresos").value);
-    let fechasGuardadas=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveIngresosFechas);
-    let horasGuardadas=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveIngresosHoras);
-    let DatosGastos = manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveIngresos);
-    DatosGastos = manejoDeDatos.convertirArrayAEnteros(DatosGastos);
-    let posNumeroAEliminar = DatosGastos.indexOf(Numero_a_eliminar);
-
-
-
-
-    if (posNumeroAEliminar >= 0) {
-      DatosGastos.splice(posNumeroAEliminar, 1);
-      fechasGuardadas.splice(posNumeroAEliminar,1);
-      horasGuardadas.splice(posNumeroAEliminar,1)
-      alert("El Gasto fue eliminado correctamente")
-    } else {
-      alert("No existe el numero que quiere eliminar");
-    }
-    localStorage.setItem(NombreClaveIngresos, DatosGastos);
-    localStorage.setItem(NombreClaveIngresosFechas,fechasGuardadas);
-    localStorage.setItem(NombreClaveIngresosHoras,horasGuardadas);
-
+function EliminarDatos(FormularioEliminar,IdElementoAEliminar,NombreClaveDatos,NombreClaveFechas,NombreClaveHoras)
+{
+  document.getElementById(FormularioEliminar).addEventListener("submit", function (event) {
+    event.preventDefault();
+      let Numero_a_eliminar = Number(document.getElementById(IdElementoAEliminar).value);
+      let Fechas=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveFechas);
+      let Horas=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveHoras);
+      let Datos = manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveDatos);
+      Datos = manejoDeDatos.convertirArrayAEnteros(Datos);
+      let posNumeroAEliminar = Datos.indexOf(Numero_a_eliminar);
+  
+  
+  
+  
+      if (posNumeroAEliminar >= 0) {
+        Datos.splice(posNumeroAEliminar, 1);
+        Fechas.splice(posNumeroAEliminar,1);
+        Horas.splice(posNumeroAEliminar,1)
+        alert("El Gasto fue eliminado correctamente")
+      } else {
+        alert("No existe el numero que quiere eliminar");
+      }
+      localStorage.setItem(NombreClaveDatos, Datos);
+      localStorage.setItem(NombreClaveFechas,Fechas);
+      localStorage.setItem(NombreClaveHoras,Horas);
+  
   });
+}
 
-
-
-  GuardarDatos("form-datos-Gastos",NombreClave,NombreClaveFechas,NombreClaveHoras,"dato")
-
-
-document.getElementById("form-eliminar-Gastos").addEventListener("submit", function (e) {
-    e.preventDefault();
-    let Numero_a_eliminar = Number(document.getElementById("dato-a-eliminar").value);
-    let fechasGuardadas=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveFechas);
-    let horasGuardadas=manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClaveHoras);
-    let DatosGastos = manejoDeDatos.OptenerDatosLocalStoreCorrectamente(NombreClave);
-    DatosGastos = manejoDeDatos.convertirArrayAEnteros(DatosGastos);
-    let posNumeroAEliminar = DatosGastos.indexOf(Numero_a_eliminar);
-
-
-
-
-    if (posNumeroAEliminar >= 0) {
-      DatosGastos.splice(posNumeroAEliminar, 1);
-      fechasGuardadas.splice(posNumeroAEliminar,1);
-      horasGuardadas.splice(posNumeroAEliminar,1)
-      alert("El Gasto fue eliminado correctamente")
-    } else {
-      alert("No existe el numero que quiere eliminar");
-    }
-    localStorage.setItem(NombreClave, DatosGastos);
-    localStorage.setItem(NombreClaveFechas,fechasGuardadas);
-    localStorage.setItem(NombreClaveHoras,horasGuardadas);
-
-  });
