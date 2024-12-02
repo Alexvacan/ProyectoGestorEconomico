@@ -4,19 +4,17 @@ const NombreClaveIngresos = "datos-De-Gastos-diarios-Ingresos";
 const NombreClaveIngresosFechas="Fecha-Ingresos"
 const NombreClaveIngresosHoras="Hora-Ingresos"
 
-const NombreClave = "datos-De-Gastos-diarios-Gastos";
-const NombreClaveFechas="Fecha-Gastos"
-const NombreClaveHoras="Hora-Gastos"
-
-
+const NombreClaveGastos = "datos-De-Gastos-diarios-Gastos";
+const NombreClaveFechasGastos="Fecha-Gastos"
+const NombreClaveHorasGastos="Hora-Gastos"
 
 
 GuardarDatos("form-datos-Ingresos",NombreClaveIngresos,NombreClaveIngresosFechas,NombreClaveIngresosHoras,"dato-Ingresos")
 EliminarDatos("form-eliminar-Ingresos","dato-a-eliminar-Ingresos",NombreClaveIngresos,NombreClaveIngresosFechas,NombreClaveIngresosHoras)
 
 
-GuardarDatos("form-datos-Gastos",NombreClave,NombreClaveFechas,NombreClaveHoras,"dato")
-EliminarDatos("form-eliminar-Gastos","dato-a-eliminar",NombreClave,NombreClaveFechas,NombreClaveHoras)
+GuardarDatos("form-datos-Gastos",NombreClaveGastos,NombreClaveFechasGastos,NombreClaveHorasGastos,"dato")
+EliminarDatos("form-eliminar-Gastos","dato-a-eliminar",NombreClaveGastos,NombreClaveFechasGastos,NombreClaveHorasGastos)
 
 
 function GuardarDatos(NomcreFormulario,NombreClaveDatos,NombreClaveFechas,NombreClaveHoras,NombreElementoAguardar)
