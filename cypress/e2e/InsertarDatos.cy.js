@@ -1,7 +1,23 @@
 describe('Prueba de botón "Ingresar Ingresos"', () => {
+        let dia;
+        let mes;
+        let anio;
+        let hora;
+        let minuto;
+        let fechaMesDiaActual;
+        let horaActual;
     beforeEach(()=>{
+        const fechaActual = new Date();
+        dia = fechaActual.getDate();
+        mes = fechaActual.getMonth() + 1;
+        anio = fechaActual.getFullYear();
+        hora = fechaActual.getHours();
+        minuto = fechaActual.getMinutes();
+        fechaMesDiaActual = anio.toString() + "-" + mes.toString() + "-" + dia.toString();
+        horaActual = hora.toString() + ":" + minuto.toString();
         cy.clearLocalStorage()
     })
+
     it('Verifica que se pueda hacer insertar el valor de 34', () => {
         cy.visit("/paginas/IngresoDatosDiarios/PaginaPrincipal.html")
         cy.get('#dato-Ingresos').type(34)
@@ -10,7 +26,9 @@ describe('Prueba de botón "Ingresar Ingresos"', () => {
           });
         cy.contains('Ingrese aqui para ver los Datos').click();
         cy.url().should('include', '/MostrarDatos/mostrar.html');
+
     });
+
     it('Verifica que se pueda hacer insertar el valor de 12', () => {
         cy.visit("/paginas/IngresoDatosDiarios/PaginaPrincipal.html")
         cy.get('#dato-Ingresos').type(12)
@@ -20,6 +38,7 @@ describe('Prueba de botón "Ingresar Ingresos"', () => {
         cy.contains('Ingrese aqui para ver los Datos').click();
         cy.url().should('include', '/MostrarDatos/mostrar.html');
     });
+    
     it('Verifica que se pueda hacer insertar los valores de 12,23,43', () => {
         cy.visit("/paginas/IngresoDatosDiarios/PaginaPrincipal.html")
         cy.get('#dato-Ingresos').type(12)
@@ -42,6 +61,11 @@ describe('Prueba de botón "Ingresar Ingresos"', () => {
         cy.url().should('include', '/MostrarDatos/mostrar.html');
     });
   });
+
+
+
+
+
   describe('Prueba de botón "Ingresar Gastos"', () => {
     beforeEach(()=>{
         cy.clearLocalStorage()
@@ -86,3 +110,4 @@ describe('Prueba de botón "Ingresar Ingresos"', () => {
         cy.url().should('include', '/MostrarDatos/mostrar.html');
     });
   });
+  
